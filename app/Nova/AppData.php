@@ -3,17 +3,19 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class BookFile extends Resource
+class AppData extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\BookFile>
+     * @var class-string<\App\Models\AppData>
      */
-    public static $model = \App\Models\BookFile::class;
+    public static $model = \App\Models\AppData::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -41,6 +43,13 @@ class BookFile extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('lasted_version'),
+            Text::make('ads_limit'),
+            Text::make('ads_spacing'),
+            Boolean::make('in_maintenance'),
+            Text::make('app_store'),
+            Text::make('play_store'),
+            Text::make('update_message'),
         ];
     }
 

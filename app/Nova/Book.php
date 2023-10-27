@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
@@ -26,7 +27,7 @@ class Book extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -34,7 +35,7 @@ class Book extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
     ];
 
     /**
@@ -50,10 +51,11 @@ class Book extends Resource
             Text::make('name'),
             Markdown::make('description'),
             Image::make('image'),
+            File::make('file'),
             Text::make('previous_id'),
             Text::make('next_id'),
             Text::make('uploader'),
-            Time::make('upload_at'),
+            Date::make('upload_at'),
         ];
     }
 

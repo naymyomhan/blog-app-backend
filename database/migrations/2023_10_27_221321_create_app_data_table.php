@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('book_files', function (Blueprint $table) {
+        Schema::create('app_data', function (Blueprint $table) {
             $table->id();
-            $table->integer('book_id')->unique();
-            $table->text('content');
+            $table->integer('lasted_version');
+            $table->integer('ads_limit');
+            $table->integer('ads_spacing');
+            $table->boolean('in_maintenance');
+            $table->string('app_store');
+            $table->string('play_store');
+            $table->string('update_message');
             $table->timestamps();
         });
     }
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('book_files');
+        Schema::dropIfExists('app_data');
     }
 };

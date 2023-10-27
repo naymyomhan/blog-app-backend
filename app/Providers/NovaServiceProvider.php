@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Nova\Admin;
+use App\Nova\AppData;
 use App\Nova\Biker;
 use App\Nova\Book;
 use App\Nova\BookFile;
@@ -42,7 +43,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                     MenuSection::make("Books", [
                         MenuItem::resource(Book::class),
-                        MenuItem::resource(BookFile::class),
+                    ])->icon('document-text')->collapsable(),
+
+                    MenuSection::make("Settings", [
+                        MenuItem::resource(AppData::class),
                     ])->icon('document-text')->collapsable(),
                 ];
             }

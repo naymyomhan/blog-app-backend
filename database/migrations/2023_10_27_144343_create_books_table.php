@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('image');
-            $table->integer('previous_id')->default(null);
-            $table->integer('next_id')->default(null);
+            $table->string('file');
+            $table->integer('previous_id')->nullable();
+            $table->integer('next_id')->nullable();
             $table->string("uploader")->default("Kyaw Gyi");
             $table->integer("read_count")->default(0);
             $table->timestamp('upload_at');
