@@ -22,7 +22,7 @@ class BooksController extends Controller
             $query->orderBy('id', 'desc');
         }
 
-        $books = $query->paginate(10);
+        $books = $query->paginate(20);
 
         foreach ($books as $book) {
             $book->date = $book->upload_at->format('Y-m-d');
@@ -44,7 +44,7 @@ class BooksController extends Controller
 
     public function searchBook()
     {
-        $books = Book::search(request('q'))->get();
+        $books = Book::all();
 
         foreach ($books as $book) {
             $book->image = env('APP_URL') . "/storage/" . $book->image;
@@ -74,6 +74,8 @@ class BooksController extends Controller
         unset($book->created_at);
         unset($book->updated_at);
         unset($book->upload_at);
+
+        $book->increment("read_count");
 
         return $this->success("Book Detail", $book);
     }
