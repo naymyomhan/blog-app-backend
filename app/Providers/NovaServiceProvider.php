@@ -11,6 +11,7 @@ use App\Nova\Category;
 use App\Nova\Dashboards\Main;
 use App\Nova\Product;
 use App\Nova\Shop;
+use App\Nova\Slider;
 use App\Nova\User;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Menu\MenuItem;
@@ -47,6 +48,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                     MenuSection::make("Settings", [
                         MenuItem::resource(AppData::class),
+                        MenuItem::resource(Slider::class),
                     ])->icon('document-text')->collapsable(),
                 ];
             }

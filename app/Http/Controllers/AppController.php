@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AppData;
+use App\Models\Slider;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 
@@ -14,5 +15,16 @@ class AppController extends Controller
         $app_data = AppData::first();
 
         return $this->success("App Data", $app_data);
+    }
+
+    public function getSliders()
+    {
+        $sliders = Slider::all();
+        foreach ($sliders as $slider) {
+            $slider->image = env('APP_URL') . "/storage/" . $slider->image;
+            unset($slider->created_at);
+            unset($slider->updated_at);
+        }
+        return $this->success("Sliders", $sliders);
     }
 }

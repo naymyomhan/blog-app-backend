@@ -42,18 +42,22 @@ class BooksController extends Controller
         ]);
     }
 
-    public function searchBook()
+    public function searchBook(Request $request)
     {
-        $books = Book::all();
+        if (!$request->q) {
+            return $this->fail("Please provide search keyword", 400);
+        }
+
+        $books = Book::where('name', 'like', '%' . $request->q . '%')->get();
 
         foreach ($books as $book) {
+            $book->date = $book->upload_at->format('Y-m-d');
             $book->image = env('APP_URL') . "/storage/" . $book->image;
+
             unset($book->created_at);
             unset($book->updated_at);
             unset($book->file);
             unset($book->upload_at);
-            unset($book->previous_id);
-            unset($book->next_id);
         }
 
         return $this->success("Search result", $books);
