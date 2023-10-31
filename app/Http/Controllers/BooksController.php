@@ -18,6 +18,10 @@ class BooksController extends Controller
             if ($orderParameter == 'view') {
                 $query->orderBy('read_count', 'desc');
             }
+
+            if ($orderParameter == 'no_view') {
+                $query->orderBy('read_count', 'asc');
+            }
         } else {
             $query->orderBy('id', 'desc');
         }
