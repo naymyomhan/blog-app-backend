@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['secure'])->group(function () {
     Route::get('app_data', [AppController::class, 'getAppData']);
     Route::get('books', [BooksController::class, 'getBooks']);
+    Route::get('recommend', [BooksController::class, 'getRecommend']);
     Route::get('search', [BooksController::class, 'searchBook']);
 
     Route::get('book/{id}', [BooksController::class, 'getBookDetail']);

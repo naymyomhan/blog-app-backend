@@ -18,10 +18,6 @@ class BooksController extends Controller
             if ($orderParameter == 'view') {
                 $query->orderBy('read_count', 'desc');
             }
-
-            if ($orderParameter == 'least_view') {
-                $query->orderBy('read_count', 'asc');
-            }
         } else {
             $query->orderBy('id', 'desc');
         }
@@ -45,6 +41,25 @@ class BooksController extends Controller
             'data' => $books->items(),
         ]);
     }
+
+
+    public function getRecommend(Request $request)
+    {
+        $books = Book::orderBy('read_count', 'asc')->take(10)->get();
+
+        foreach ($books as $book) {
+            $book->date = $book->upload_at->format('Y-m-d');
+            $book->image = env('APP_URL') . "/storage/" . $book->image;
+
+            unset($book->created_at);
+            unset($book->updated_at);
+            unset($book->file);
+            unset($book->upload_at);
+        }
+
+        return $this->success("Book List", $books);
+    }
+
 
     public function searchBook(Request $request)
     {
