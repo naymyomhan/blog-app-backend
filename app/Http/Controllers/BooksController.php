@@ -19,7 +19,7 @@ class BooksController extends Controller
                 $query->orderBy('read_count', 'desc');
             }
 
-            if ($orderParameter == 'no_view') {
+            if ($orderParameter == 'least_view') {
                 $query->orderBy('read_count', 'asc');
             }
         } else {
