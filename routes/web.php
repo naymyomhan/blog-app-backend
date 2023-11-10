@@ -20,3 +20,9 @@ Route::get('/', function () {
 Route::get('/privacy_policy', function () {
     return view('privacy_policy');
 });
+
+Route::get('/app-ads.txt', function () {
+    $content = view('app-ads');
+    return response($content, 200)
+        ->header('content-Type', 'text');
+});
