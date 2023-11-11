@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\ID;
@@ -54,6 +55,7 @@ class Book extends Resource
             File::make('file')->path("books"),
             Text::make('previous_id'),
             Text::make('next_id'),
+            Boolean::make('sensitive'),
             Text::make('uploader'),
             Date::make('upload_at'),
         ];
