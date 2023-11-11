@@ -6,7 +6,7 @@ use App\Models\Book;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 
-class BooksController extends Controller
+class SensitiveBookController extends Controller
 {
     use ResponseTrait;
     public function getBooks(Request $request)
@@ -22,7 +22,7 @@ class BooksController extends Controller
             $query->orderBy('id', 'desc');
         }
 
-        $books = $query->where('sensitive', 0)->paginate(20);
+        $books = $query->where('sensitive', 1)->paginate(20);
 
         foreach ($books as $book) {
             $book->date = $book->upload_at->format('Y-m-d');
@@ -45,7 +45,7 @@ class BooksController extends Controller
 
     public function getRecommend(Request $request)
     {
-        $books = Book::where('sensitive', 0)->orderBy('read_count', 'asc')->take(10)->get();
+        $books = Book::where('sensitive', 1)->orderBy('read_count', 'asc')->take(10)->get();
 
         foreach ($books as $book) {
             $book->date = $book->upload_at->format('Y-m-d');
@@ -67,7 +67,7 @@ class BooksController extends Controller
             return $this->fail("Please provide search keyword", 400);
         }
 
-        $books = Book::where('name', 'like', '%' . $request->q . '%')->where('sensitive', 0)->get();
+        $books = Book::where('name', 'like', '%' . $request->q . '%')->where('sensitive', 1)->get();
 
         foreach ($books as $book) {
             $book->date = $book->upload_at->format('Y-m-d');
