@@ -57,6 +57,7 @@ class Book extends Resource
             Text::make('next_id'),
             Boolean::make('sensitive'),
             Text::make('uploader'),
+            Boolean::make('premium'),
             Date::make('upload_at'),
         ];
     }
