@@ -46,12 +46,12 @@
                 <a href="/" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                     Download From Play Store
                 </a>
-                <a href="/" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                <a href="{{asset('assets/images/PhoneMockup.png')}}" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                     Direct Download
                 </a>
             </div>
             <div class="hidden lg:mt-0 lg:col-span-5 lg:flex justify-center items-center">
-                <img src="{{asset('assets/images/PhoneMockup.png')}}" class="w-80">
+                <img src="{{asset('assets/apyar_sar_oak.apk')}}" class="w-80">
             </div>
         </div>
     </section>
