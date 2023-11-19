@@ -19,7 +19,7 @@ class SensitiveBookController extends Controller
                 $query->orderBy('read_count', 'desc');
             }
         } else {
-            $query->orderBy('id', 'desc');
+            $query->orderBy('read_count', 'asc');
         }
 
         $books = $query->where('sensitive', 1)->paginate(20);
