@@ -20,7 +20,7 @@ class AppController extends Controller
 
     public function getSliders()
     {
-        $sliders = Slider::all();
+        $sliders = Slider::where('sensitive', 0)->get();
         foreach ($sliders as $slider) {
             $slider->image = env('APP_URL') . "/storage/" . $slider->image;
             unset($slider->created_at);
