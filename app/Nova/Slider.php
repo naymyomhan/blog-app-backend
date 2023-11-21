@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
@@ -45,6 +46,7 @@ class Slider extends Resource
             ID::make()->sortable(),
             Image::make('image')->path("sliders"),
             Text::make('link'),
+            Boolean::make('sensitive'),
         ];
     }
 
