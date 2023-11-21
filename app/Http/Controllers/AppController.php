@@ -13,6 +13,7 @@ class AppController extends Controller
     public function getAppData()
     {
         $app_data = AppData::first();
+        $app_data->native_ad = $app_data->app_store;
 
         return $this->success("App Data", $app_data);
     }
