@@ -45,7 +45,11 @@ class BooksController extends Controller
 
     public function getRecommend(Request $request)
     {
-        $books = Book::where('sensitive', 0)->orderBy('read_count', 'asc')->take(10)->get();
+        // $books = Book::where('sensitive', 0)->orderBy('read_count', 'asc')->take(10)->get();
+        $randomNumber = rand(0, 999999);
+
+        $books = Book::where('sensitive', 0)
+        ->orderByRaw("RAND($randomNumber)")->take(10)->get();
 
         foreach ($books as $book) {
             $book->date = $book->upload_at->format('Y-m-d');
