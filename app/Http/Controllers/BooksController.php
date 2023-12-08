@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class BooksController extends Controller
 {
@@ -13,14 +14,14 @@ class BooksController extends Controller
     {
         $query = Book::query();
 
-        if ($request->has('order_by')) {
-            $orderParameter = $request->input('order_by');
-            if ($orderParameter == 'view') {
-                $query->orderBy('read_count', 'desc');
-            }
-        } else {
-            $query->orderBy('id', 'desc');
-        }
+        $currentDateTime = Carbon::now();
+
+        $timestamp = $currentDateTime->timestamp;
+
+        $totalDays = floor($timestamp / (60 * 60 * 24));
+
+
+        $query->orderByRaw("RAND($totalDays)");
 
         $books = $query->where('sensitive', 0)->paginate(20);
 
