@@ -46,7 +46,6 @@ class BooksController extends Controller
 
     public function getRecommend(Request $request)
     {
-        // $books = Book::where('sensitive', 0)->orderBy('read_count', 'asc')->take(10)->get();
         $randomNumber = rand(0, 999999);
 
         $books = Book::where('sensitive', 0)
