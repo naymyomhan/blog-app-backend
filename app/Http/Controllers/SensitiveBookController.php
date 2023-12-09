@@ -13,14 +13,14 @@ class SensitiveBookController extends Controller
     {
         $query = Book::query();
 
-        $currentDateTime = Carbon::now();
-
-        $timestamp = $currentDateTime->timestamp;
-
-        $totalDays = floor($timestamp / (60 * 60 * 24));
-
-
-        $query->orderByRaw("RAND($totalDays)");
+        if ($request->has('order_by')) {
+            $orderParameter = $request->input('order_by');
+            if ($orderParameter == 'view') {
+                $query->orderBy('read_count', 'desc');
+            }
+        } else {
+            $query->orderBy('read_count', 'asc');
+        }
 
         $books = $query->where('sensitive', 1)->paginate(20);
 
@@ -45,11 +45,7 @@ class SensitiveBookController extends Controller
 
     public function getRecommend(Request $request)
     {
-        $randomNumber = rand(0, 999999);
-
-        $books = Book::where('sensitive', 1)
-            ->orderByRaw("RAND($randomNumber)")->take(10)->get();
-
+        $books = Book::where('sensitive', 1)->orderBy('read_count', 'asc')->take(10)->get();
 
         foreach ($books as $book) {
             $book->date = $book->upload_at->format('Y-m-d');
