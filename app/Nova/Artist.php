@@ -3,25 +3,19 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Oneduo\NovaTimeField\Time;
-use Ramsey\Uuid\Type\Integer;
 
-class Book extends Resource
+class Artist extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Book>
+     * @var class-string<\App\Models\Artist>
      */
-    public static $model = \App\Models\Book::class;
+    public static $model = \App\Models\Artist::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -36,7 +30,7 @@ class Book extends Resource
      * @var array
      */
     public static $search = [
-        'name',
+        'id',
     ];
 
     /**
@@ -50,15 +44,7 @@ class Book extends Resource
         return [
             ID::make()->sortable(),
             Text::make('name'),
-            Markdown::make('description'),
-            Image::make('image')->path("covers"),
-            File::make('file')->path("books"),
-            Text::make('previous_id'),
-            Text::make('next_id'),
-            Boolean::make('sensitive'),
-            Text::make('uploader'),
-            Boolean::make('premium'),
-            Date::make('upload_at'),
+            Image::make('image'),
         ];
     }
 

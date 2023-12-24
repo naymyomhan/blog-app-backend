@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('artists', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
             $table->string('image');
-            $table->string('file');
-            $table->integer('previous_id')->nullable();
-            $table->integer('next_id')->nullable();
-            $table->string("uploader")->default("Kyaw Gyi");
-            $table->integer("read_count")->default(0);
-            $table->timestamp('upload_at');
             $table->timestamps();
         });
     }
@@ -31,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('artists');
     }
 };

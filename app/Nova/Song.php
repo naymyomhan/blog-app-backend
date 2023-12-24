@@ -3,20 +3,21 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Slider extends Resource
+class Song extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Slider>
+     * @var class-string<\App\Models\Song>
      */
-    public static $model = \App\Models\Slider::class;
+    public static $model = \App\Models\Song::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -44,9 +45,12 @@ class Slider extends Resource
     {
         return [
             ID::make()->sortable(),
-            Image::make('image')->path("sliders"),
-            Text::make('link'),
-            Boolean::make('sensitive'),
+            BelongsTo::make('artist'),
+            Text::make('title'),
+            Text::make('composer'),
+            Markdown::make('lyrics'),
+            Image::make('lyrics_image'),
+            Text::make('uploader'),
         ];
     }
 

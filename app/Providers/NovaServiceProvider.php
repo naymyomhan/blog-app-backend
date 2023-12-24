@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Nova\Admin;
 use App\Nova\AppData;
+use App\Nova\Artist;
 use App\Nova\Biker;
 use App\Nova\Book;
 use App\Nova\BookFile;
@@ -12,6 +13,7 @@ use App\Nova\Dashboards\Main;
 use App\Nova\Product;
 use App\Nova\Shop;
 use App\Nova\Slider;
+use App\Nova\Song;
 use App\Nova\User;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Menu\MenuItem;
@@ -42,13 +44,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         MenuItem::resource(Admin::class),
                     ])->icon('document-text')->collapsable(),
 
-                    MenuSection::make("Books", [
-                        MenuItem::resource(Book::class),
+                    MenuSection::make("Song", [
+                        MenuItem::resource(Artist::class),
+                        MenuItem::resource(Song::class),
                     ])->icon('document-text')->collapsable(),
 
                     MenuSection::make("Settings", [
                         MenuItem::resource(AppData::class),
-                        MenuItem::resource(Slider::class),
                     ])->icon('document-text')->collapsable(),
                 ];
             }
